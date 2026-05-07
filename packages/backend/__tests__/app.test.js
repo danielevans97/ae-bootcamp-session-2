@@ -21,6 +21,15 @@ const createTodo = async (title = 'Temp Todo') => {
 };
 
 describe('API Endpoints', () => {
+  describe('GET /', () => {
+    it('should return a health check response', async () => {
+      const response = await request(app).get('/');
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual({ status: 'ok', message: 'Backend server is running' });
+    });
+  });
+
   describe('GET /api/todos', () => {
     it('should return all todos', async () => {
       const response = await request(app).get('/api/todos');
